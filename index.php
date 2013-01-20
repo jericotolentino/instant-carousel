@@ -4,7 +4,6 @@ define('NO_GALLERY_IMAGES_TITLE', 'No photos available');
 define('NO_GALLERY_IMAGES', 'The gallery you are trying to view has no images. Upload some images to this folder first.');
 define('DEFAULT_GALLERY_TITLE', 'My Gallery');
 define('CONVERTED_IMAGE_WIDTH', 512);
-define('CONVERTED_IMAGE_HEIGHT', 384);
 define('PREVIEW_PREFIX', 'ic_preview_');
 
 class Instant_Carousel
@@ -121,8 +120,9 @@ class Instant_Carousel
                     $imgx = imagesx($src);
                     $imgy = imagesy($src);
 
-                    $converted_img = imagecreatetruecolor(CONVERTED_IMAGE_WIDTH, CONVERTED_IMAGE_HEIGHT);
-                    imagecopyresampled($converted_img, $src, 0, 0, 0, 0, CONVERTED_IMAGE_WIDTH, CONVERTED_IMAGE_HEIGHT, $imgx, $imgy);
+                    $converted_img_height = (CONVERTED_IMAGE_WIDTH * $imgy) / $imgx;
+                    $converted_img = imagecreatetruecolor(CONVERTED_IMAGE_WIDTH, $converted_img_height);
+                    imagecopyresampled($converted_img, $src, 0, 0, 0, 0, CONVERTED_IMAGE_WIDTH, $converted_img_height, $imgx, $imgy);
                     imagejpeg($converted_img, $this->root . DIRECTORY_SEPARATOR . $preview);
                     break;
                 case 'png':
