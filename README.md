@@ -1,6 +1,6 @@
 Instant Carousel is a small PHP script that generates the appropriate HTML and image previews for a set of images in a directory instead of just showing an image listing. It's great for generating a quick page to show your photos without having to write HTML.
 
-![Sulfur deposits en route to Mt. Pinatubo](sulfur.jpg "Sulfur deposits en route to Mt. Pinatubo")
+![Sulfur deposits en route to Mt. Pinatubo](https://raw.github.com/jericotolentino/instant-carousel/master/sulfur.png "Sulfur deposits en route to Mt. Pinatubo")
 
 It works by scanning the directory for images (currently supports only JPG and PNG), then creates previews for each image. By default, it resizes images to 512px, but this can be changed in the file. Other configurable options include:
 
