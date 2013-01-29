@@ -16,6 +16,12 @@ define('PREVIEW_DIR_NOT_WRITABLE_TITLE', 'Unable to generate previews');
 // Message to show if the preview directory (PREVIEW_FOLDER is not writable)
 define('PREVIEW_DIR_NOT_WRITABLE', 'The preview directory is not writable');
 
+// Title to show if the preview directory does not exist
+define('PREVIEW_DIR_NOT_EXISTS_TITLE', 'Preview directory does not exist');
+
+// Message to show if the preview directory does not exist
+define('PREVIEW_DIR_NOT_EXISTS', 'The preview directory you specified does not exist yet. Please create this directory first.');
+
 // Default gallery title
 define('DEFAULT_GALLERY_TITLE', 'My Gallery');
 
@@ -75,7 +81,7 @@ class Instant_Carousel
     }
 
     /**
-     * Used later when gallery HTML is embedded into the body of the page
+     * Returns HTML for body
      */
     public function getGalleryHtml()
     {
@@ -83,7 +89,7 @@ class Instant_Carousel
     }
 
     /**
-     * Used later when gallery title is embedded into the title tag of the page
+     * Returns gallery title set in file
      */
     public function getGalleryTitle()
     {
@@ -115,6 +121,8 @@ class Instant_Carousel
         $files = array();
 
         if ($handle = opendir($this->root)) {
+
+            // Loop through directory and have all files go through _checkFile
             while (false !== ($entry = readdir($handle))) {
                 if ($this->_checkFile($entry)) {
                     $files[] = $entry;
@@ -168,13 +176,18 @@ class Instant_Carousel
 
         $forCreation = array();
         
+        // Loop through all files found and check if they have previews
         foreach ($fileList as $fl) {
             $preview = $this->root . DIRECTORY_SEPARATOR . PREVIEW_FOLDER . DIRECTORY_SEPARATOR . PREVIEW_PREFIX . $fl;
+
+            // If preview does not exist, add to array that will be returned later
             if (!file_exists($preview)) {
                 $forCreation[] = $fl;
             }
         }
 
+        // In case no previews need to be generated, get the list of previews, then
+        // build appropriate HTML so getGalleryHTML can be called in the same way
         if (empty($forCreation)) {
             $this->_getPreviewsList();
             $this->_buildGallery();
@@ -190,9 +203,17 @@ class Instant_Carousel
      */
     private function _createPreview($previewList)
     {
+        // Throw exception if preview directory does not exist
+        if (!file_exists($this->root . DIRECTORY_SEPARATOR . PREVIEW_FOLDER)) {
+            throw new Exception($this->_previewDirNotExists());
+        }
+
+        // Throw exception if preview directory is not writable
         if (!is_writable($this->root . DIRECTORY_SEPARATOR . PREVIEW_FOLDER)) {
             throw new Exception($this->_previewDirNotWriteable());
         }
+
+        // Generate a preview for each of the valid file extensions found
         foreach ($previewList as $pl) {
             $path = $this->root . DIRECTORY_SEPARATOR . $pl;
             $preview = PREVIEW_PREFIX . $pl;
@@ -225,6 +246,8 @@ class Instant_Carousel
                     break;
             }
         }
+
+        // Get all the generated previews (new or not), then build the HTML for it
         $this->_generatedPreviews[] = $this->_getPreviewsList();
         $this->_buildGallery();
     }
@@ -273,6 +296,7 @@ class Instant_Carousel
 
     /**
      * Generates an HTML string that shows an empty gallery message
+     * @return string HTML message (no images available)
      */
     private function _emptyGallery()
     {
@@ -281,12 +305,25 @@ class Instant_Carousel
 
     /**
      * Generates an HTML string that shows a preview directory not writable message
+     * @return string HTML message (preview folder is not writable)
      */
     private function _previewDirNotWriteable()
     {
         $message = '<h3>' . PREVIEW_DIR_NOT_WRITABLE_TITLE . '</h3><p>' . PREVIEW_DIR_NOT_WRITABLE . '</p>';
         $message .= '<p>Please make sure the path set for PREVIEW_FOLDER (' . $this->root . DIRECTORY_SEPARATOR . 
             PREVIEW_FOLDER . ') is correct and that the correct permissions are set for the said folder.</p>';
+        return $message;
+    }
+
+    /**
+     * Generates an HTML string that shows a preview directory has not been created yet
+     * @return string HTML message (preview folder has not been created yet)
+     */
+    private function _previewDirNotExists()
+    {
+        $message = '<h3>' . PREVIEW_DIR_NOT_EXISTS_TITLE . '</h3><p>' . PREVIEW_DIR_NOT_EXISTS . '</p>';
+        $message .= '<p>Please make sure the PREVIEW_FOLDER (' . $this->root . DIRECTORY_SEPARATOR . 
+            PREVIEW_FOLDER . ') has been created.</p>';
         return $message;
     }
 
