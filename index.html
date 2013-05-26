@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Instant-carousel by jericotolentino</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Instant-carousel</h1>
+        <p>Carousel generator for images</p>
+
+        <p class="view"><a href="https://github.com/jericotolentino/instant-carousel">View the Project on GitHub <small>jericotolentino/instant-carousel</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/jericotolentino/instant-carousel/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jericotolentino/instant-carousel/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jericotolentino/instant-carousel">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Overview</h2>
+
+<p>Instant Carousel is a small PHP script that generates the appropriate HTML and image previews for a set of images in a directory instead of just showing an image listing. It's great for generating a quick page to show your photos without having to write HTML.</p>
+
+<p><img src="https://raw.github.com/jericotolentino/instant-carousel/master/sulfur.png" alt="Sulfur deposits en route to Mt. Pinatubo" title="Sulfur deposits en route to Mt. Pinatubo"></p>
+
+<p>It works by scanning the directory for images (currently supports only JPG and PNG), then creates previews for each image. By default, it resizes images to 512px, but this can be changed in the file. </p>
+
+<h2>Configurable Options</h2>
+
+<ul>
+<li>NO_GALLERY_IMAGES_TITLE : Title of page if no images were found (or not readable) in the directory</li>
+<li>NO_GALLERY_IMAGES : Message in page if no images were found (or not readable) in the directory</li>
+<li>PREVIEW_DIR_NOT_WRITABLE_TITLE : Title of page if the directory where previews are written to is not writable</li>
+<li>PREVIEW_DIR_NOT_WRITABLE : Message in page if the directory where previews are written to is not writable</li>
+<li>DEFAULT_GALLERY_TITLE : Default gallery title</li>
+<li>CONVERTED_IMAGE_WIDTH : Controls width of generated preview</li>
+<li>PREVIEW_PREFIX : Sets a prefix for preview filenames</li>
+<li>PREVIEW_FOLDER : Path of preview folder relative to the current directory</li>
+</ul><h2>Installation</h2>
+
+<ol>
+<li>Upload your photos to your web site (CPanel, FTP, SSH, etc). For example, you can have a beach-vacation folder
+under an images folder in your site which is accessed through <a href="http://www.mysite.com/images/beach-vacation">http://www.mysite.com/images/beach-vacation</a>.</li>
+<li>If desired, edit the configurable constants of Instant Carousel in the index.php file</li>
+<li>Upload the index.php file to the same directory as your photos</li>
+<li>Create a directory that is writable to the web server for the previews. The name of the directory must be the same
+as the value of the PREVIEW_FOLDER constant in index.php</li>
+<li>Visit the folder you just created from your browser, access <a href="http://www.mysite.com/images/beach-vacation">http://www.mysite.com/images/beach-vacation</a>. It should
+show a carousel-like interface with the photos changing every two seconds.</li>
+</ol><h2>Dependencies</h2>
+
+<p>Instant Carousel is dependent on jQuery and Twitter Bootstrap. Both are loaded by a CDN. Alternately, you can modify the code to load such dependencies from a location of your choice.</p>
+
+<h2>License</h2>
+
+<p>Instant Carousel is licensed under <a href="http://www.wtfpl.net">WTFPL</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/jericotolentino">jericotolentino</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
