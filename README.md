@@ -12,10 +12,10 @@ It works by scanning the directory for images (currently supports only JPG and P
 - NO_GALLERY_IMAGES : Message in page if no images were found (or not readable) in the directory
 - PREVIEW_DIR_NOT_WRITABLE_TITLE : Title of page if the directory where previews are written to is not writable
 - PREVIEW_DIR_NOT_WRITABLE : Message in page if the directory where previews are written to is not writable
-- DEFAULT_GALLERY_TITLE : Default gallery title
-- CONVERTED_IMAGE_WIDTH : Controls width of generated preview
-- PREVIEW_PREFIX : Sets a prefix for preview filenames
-- PREVIEW_FOLDER : Path of preview folder relative to the current directory
+- DEFAULT_GALLERY_TITLE : Default gallery title (default: My Gallery)
+- CONVERTED_IMAGE_WIDTH : Controls width of generated preview (default: 512)
+- PREVIEW_PREFIX : Sets a prefix for preview filenames (default: ic_preview_)
+- PREVIEW_FOLDER : Path of preview folder relative to the current directory (default: previews)
 
 ## Installation
 
