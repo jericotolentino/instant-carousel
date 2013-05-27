@@ -1,8 +1,12 @@
+## Overview
+
 Instant Carousel is a small PHP script that generates the appropriate HTML and image previews for a set of images in a directory instead of just showing an image listing. It's great for generating a quick page to show your photos without having to write HTML.
 
 ![Sulfur deposits en route to Mt. Pinatubo](https://raw.github.com/jericotolentino/instant-carousel/master/sulfur.png "Sulfur deposits en route to Mt. Pinatubo")
 
 It works by scanning the directory for images (currently supports only JPG and PNG), then creates previews for each image. By default, it resizes images to 512px, but this can be changed in the file. Other configurable options include:
+
+## Configurable Options
 
 - NO_GALLERY_IMAGES_TITLE : Title of page if no images were found (or not readable) in the directory
 - NO_GALLERY_IMAGES : Message in page if no images were found (or not readable) in the directory
@@ -13,7 +17,7 @@ It works by scanning the directory for images (currently supports only JPG and P
 - PREVIEW_PREFIX : Sets a prefix for preview filenames
 - PREVIEW_FOLDER : Path of preview folder relative to the current directory
 
-Installation
+## Installation
 
 1. Upload your photos to your web site (CPanel, FTP, SSH, etc). For example, you can have a beach-vacation folder
 under an images folder in your site which is accessed through http://www.mysite.com/images/beach-vacation.
@@ -24,6 +28,10 @@ as the value of the PREVIEW_FOLDER constant in index.php
 5. Visit the folder you just created from your browser, access http://www.mysite.com/images/beach-vacation. It should
 show a carousel-like interface with the photos changing every two seconds.
 
-Dependencies
+## Dependencies
 
-Instant Carousel is dependent on jQuery and Twitter Bootstrap. Both are loaded by a CDN.
+Instant Carousel is dependent on the GD2 library, jQuery and Twitter Bootstrap. Last two are loaded via CDN. Alternately, you can modify the code to load such dependencies from a location of your choice.
+
+## License
+
+Instant Carousel is licensed under [WTFPL](http://www.wtfpl.net).
